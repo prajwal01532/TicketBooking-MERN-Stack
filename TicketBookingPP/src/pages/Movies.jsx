@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { dummyShowsData } from '../assets/assets'
 import MovieCard from '../components/MovieCard'
 import BlurCircle from '../components/BlurCircle'
@@ -9,17 +10,21 @@ const Movies = () => {
     overflow-hidden min-h-[80vh]">
 
       <BlurCircle top="150px" left="0px"/>
-      <BlurCircle buttom="50px" right="50px"/>
+      <BlurCircle bottom="50px" right="50px"/>
       <h1 className="text-lg font-medium my-4">Now Showing</h1>
-      <div className="flex flex-wrap  max-sm:justify-center gap-8">
+
+      <div className="flex flex-wrap max-sm:justify-center gap-8">
         {dummyShowsData.map((movie) => (
-          <MovieCard movie={movie} key={movie._id} />
+          <Link key={movie._id} to={`/movies/${movie._id}`}>
+            <MovieCard movie={movie} />
+          </Link>
         ))}
       </div>
     </div>
   ) : (
-    <div className="flex flex-xol items-center justify-center h-screen">
-      <h1 className='text-3xl font-bold text-center'>No movies available right now.</h1></div>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className='text-3xl font-bold text-center'>No movies available right now.</h1>
+    </div>
   )
 }
 
