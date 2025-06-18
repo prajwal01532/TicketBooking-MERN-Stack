@@ -1,11 +1,67 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { dummyDateTimeData, dummyShowsData } from '../assets/assets';
+import { ClockIcon } from 'lucide-react';
+import Loading from '../components/Loading';
+import isoTimeFormat from '../lib/isoTimeFormat';
+import BlurCircle from '../components/BlurCircle';
+import screenImage from '../assets/screenImage.svg'; // adjust path accordingly
 
 const SeatLayout = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const { id, date } = useParams();
 
-export default SeatLayout
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [show, setShow] = useState(null);
+
+  const navigate = useNavigate();
+
+  const getShow = async () => {
+    const foundShow = dummyShowsData.find((show) => show._id === id);
+    if (foundShow) {
+      setShow({
+        movie: foundShow,
+        dateTime: dummyDateTimeData
+      });
+    }
+  };
+
+  useEffect(() => {
+    getShow();
+  }, []);
+
+  return show ? (
+    <div className="flex flex-col md:flex-row px-6 md:px-16 lg:px-40 py-30 md:pt-50">
+      {/* Available Timings */}
+      <div className="w-60 bg-primary/10 border border-primary/20 rounded-lg py-10 h-max md:sticky md:top-30">
+        <p className="text-lg font-semibold px-6">Available Timings</p>
+        <div className="mt-5 space-y-1">
+          {show.dateTime?.[date]?.map((time) => (
+            <div
+              key={time.time}
+              className={`flex items-center gap-2 px-6 py-2 w-max rounded-r-md cursor-pointer transition 
+                ${selectedTime?.time === time.time ? "bg-primary text-white" : "hover:bg-primary/20"}`}
+              onClick={() => setSelectedTime(time)}
+            >
+              <ClockIcon className="w-4 h-4" />
+              <p className="text-sm">{isoTimeFormat(time.time)}</p>
+            </div>
+          )) || <p className="px-6 text-sm text-red-500">No timings available for this date.</p>}
+        </div>
+      </div>
+
+      {/* Seat layouts */}
+      <div className='relative flex-1 flex flex-col items-center max-md:mt-16'>
+        <BlurCircle top="-100px" left="-100px"/>
+        <BlurCircle bottom="0" right="0"/>
+        <h1 className="text-2xl font-semibold mb-4">Select Your Seat </h1>
+          <img src={screenImage} alt="screen"/>
+          <p className="text-gray-400 text-sm mb-6">SCREEN SIDE</p>
+      </div>
+    </div>
+  ) : (
+    <Loading />
+  );
+};
+
+export default SeatLayout;
