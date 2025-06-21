@@ -9,6 +9,12 @@ import MovieDetails from './pages/MovieDetails';
 import SeatLayout from './pages/SeatLayout';
 import MyBookings from './pages/MyBookings';
 import Favorite from './pages/Favorite';
+import Layout from './pages/admin/Layout';
+import Dashboard from './pages/admin/DashBoard';
+import ListBookings from './pages/admin/ListBookings';
+import ListShows from './pages/admin/ListShows';
+import AddShows from './pages/admin/AddShows';
+
 
 const App = () => {
   const location = useLocation();
@@ -16,7 +22,7 @@ const App = () => {
 
   return (
     <>
-      <Toaster position="top-right" />
+      <Toaster position="top-center" />
       
       {/* Conditionally render NavBar */}
       {!isAdminRoute && <NavBar />}
@@ -28,6 +34,15 @@ const App = () => {
         <Route path="/movies/:id/:date" element={<SeatLayout />} />
         <Route path="/my-bookings" element={<MyBookings />} />
         <Route path="/favorite" element={<Favorite />} />
+
+        <Route path='/admin/*' element={<Layout/>}>
+        <Route index element={<Dashboard/>}/>
+        <Route path="add-shows" element={<AddShows/>}/>
+        <Route path="list-shows" element={<ListShows/>}/>
+        <Route path="list-bookings" element={<ListBookings/>}/>
+
+
+        </Route>
       </Routes>
       
       {/* Conditionally render Footer */}
