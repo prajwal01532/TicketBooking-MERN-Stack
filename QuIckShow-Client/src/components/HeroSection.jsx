@@ -14,19 +14,19 @@ const HeroSection = () => {
       </h1>
 
       {/* Title below time date ko lagi */}
-      <div className='flex items-center gap-4 text-gray-300'>
+      <div className='flex items-center gap-4 text-white'>
         <span>Action | Adventure | Sci-Fi</span>
         <div className='flex items-center gap-1'>
-          <CalendarIcon className='w-4.5 h-4.5' /> 2018
+          <CalendarIcon className='w-4.5 h-4.5 ' /> 2018
         </div>
         <div className='flex items-center gap-1'>
-          <ClockIcon className='w-4.5 h-4.5' /> 2h 8m
+          <ClockIcon className='w-4.5 h-4.5 text-red-900' /> 2h 8m
         </div>
       </div>
 
 
              {/* Movies ko description ko lagi thorai  */}
-            <p className='max-w-md text-gray-300'>In apost apolocalyptic world where cities ride on wheels 
+            <p className='max-w-md '>In apost apolocalyptic world where cities ride on wheels 
                 and consume each other to survive, two people meet in london and try
                  to stop a conspiracy.</p>
 
