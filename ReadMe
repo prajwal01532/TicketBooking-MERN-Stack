@@ -1,0 +1,31 @@
+# 🎉 QuickShow Client
+
+Frontend of the QuickShow project built with **React + Vite**.(Fully Completed )
+Backend of the QuickShow project built with **Node.js + Express**.(Only connection is done and few files are done at backend)
+
+## ✅ How to run
+
+### 1️⃣ Clone the project
+git clone "(url here)"
+
+cd QuickShow-client
+
+#Install dependencies
+npm install
+
+Note::use your own mongodb url to connect with the database other wise you cannot connect 
+      to mongodb server(use mongodb compass or you can also use monngodb atlas for mangodb server connection
+#️Start the app
+npm run dev
+
+cd QuickShow-server
+#Install dependencies
+npm install
+
+# Start the app
+npm run dev/npm start 
+
+
+Contact me email me(prazzol01532@gmail.com) if there occurs some problems inside the code 
+                        
+Note:Due to some reason i had only completed Frontend development and server side is done partially 
